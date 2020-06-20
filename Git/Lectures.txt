@@ -1,0 +1,77 @@
+# Установка имени пользователя и почты в git
+git config --global user.name "myUserName"
+git config --global user.email myName@email.com
+
+# Удаление репозитория github
+1.	Идем в репозиторий и нажимаем Settings
+2.	Нажимаем Delete this repository
+
+# Создание репозитория
+1.	Создаем для него каталог, переходим в него и инициализируем
+mkdir my-first-repo
+cd my-first-repo/
+git init
+
+# Посмотреть статус репозитория (так можно понять, какие файлы трекаются в git)
+git status
+
+# Добавить файл в репозиторий (и тем самым начать его трекать)
+git add readme.txt
+
+# Добавить все файлы директории в репозиторий
+git add -A
+
+# Удалить файл из репозитория
+git rm --cached readme.txt
+
+# Закоммитить файл
+git commit -m "added readme.txt"
+# Необходимо всегда предоставлять описание коммита (параметр -m)
+
+# Отменить последний коммит
+git reset --soft HEAD~
+
+# Справка по команде git (в примере рассматривается команда status)
+git help status
+
+# Посмотреть историю коммитов
+git log
+
+# Посмотреть изменения файла после коммита (в примере рассматривается файл readme.txt)
+git diff readme.txt
+
+# Отменить изменения в файле
+git checkout readme.txt
+
+# Игнорировать файлы при ведении репозитория (здесь мы игнорируем все файлы с расширением jpg)
+echo "*.jpg" > .gitignore
+
+# Посмотреть доступные бранчи
+git branch
+
+# Добавить бранч
+git branch my-new-feature
+# При выводе информации по бранчам звездочкой подсвечивается текущий бранч
+
+# Сделать бранч текущим
+git checkout my-new-feature
+
+# Добавить бранч и сразу сделать текущим
+git checkout -b update-readme
+
+# Объединить текущий бранч с другим (в роли другого здесь - update-readme)
+git merge update-readme
+
+# Связать локальный репозиторий с github (меппинг в нашем случае будет называться origin)
+git remote add origin https://github.com/dementich/my-first-repo.git
+# естественно, репозиторий с выше приведенным url должен присутствовать на github.
+# при создании репозитория на github будет выведена подсказка по команде и будет выведен url.
+
+# Удалить связь локального репозитория с github
+git remote remove origin
+
+# Закоммитить бранч на github
+git push -u origin master
+
+# Загрузить репозиторий из github (естественно, надо предварительно сделать меппинг)
+git pull
